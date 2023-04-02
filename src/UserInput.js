@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 
+//
+
 const UserInput= () => {
     const[num1, setnum1] = useState("");
     const[num2, setnum2] = useState("");
@@ -12,27 +14,29 @@ const UserInput= () => {
 
     const calculate = (action) =>{
         if(num1 !== "" && num2 !== ""){
+          seterrror("");
           setresult("Result = ");
             if(action === "+") setans(Number(num1) + Number(num2));
             else if(action === "-") setans(Number(num1) - Number(num2));
             else if(action === "*") setans(Number(num1) * Number(num2));
             else if(action === "/") setans(Number(num1) / Number(num2));
-            seterrror("");
+
             setsuccess("Success : Your result is shown above!");
+            
         }
-        else if(num1 == "" && num2 !== "") {
+        else if(num1 === "" && num2 !== "") {
           setans("");
           setresult("");
           setsuccess("");
           seterrror("Error : Num1 cannot be empty")
         }
-        else if(num1 !== "" && num2 == "") {
+        else if(num1 !== "" && num2 === "") {
           setans("");
           setresult("");
           setsuccess("");
           seterrror("Error : Num2 cannot be empty")
         }
-        else if(num1 == "" && num2 == "") {
+        else if(num1 === "" && num2 === "") {
           setans("");
           setresult("");
           setsuccess("");
@@ -50,10 +54,10 @@ const UserInput= () => {
           setnum2(event.target.value);
         }} />
       </div>
-      <button onClick={() =>{calculate ("+")}}>+</button>
-      <button onClick={() =>{calculate ("-")}}>-</button>
-      <button onClick={() =>{calculate ("*")}}>*</button>
-      <button onClick={() =>{calculate ("/")}}>/</button>
+      <button onClick = {() => {calculate ("+")}}>+</button>
+      <button onClick = {() => {calculate ("-")}}>-</button>
+      <button onClick = {() => {calculate ("*")}}>*</button>
+      <button onClick = {() => {calculate ("/")}}>/</button>
       <div className="resultBox">{result}{ans}
         <div className="error">{error}</div>
         <div className="success">{success}</div>
